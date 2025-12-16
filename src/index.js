@@ -1,15 +1,17 @@
 // File system (interage com arquivos)
 const fs = require('fs');
+const trataErros = require('./erros/funcoesErro.js');
 
 const caminhoArquivo = process.argv; // Recebe argumentos pela execução do código
 const link = caminhoArquivo[2];
 
 fs.readFile(link, 'utf-8', (erro, texto) => {
-    if (erro) {
-        console.log('qual é o erro?', erro);
-        return;
+    try {
+        if (erro) throw erro;
+        contaPalavras(texto);   
+    } catch(erro) {
+        trataErros(erro);
     }
-    contaPalavras(texto);
 });
 
 function contaPalavras(texto) {
