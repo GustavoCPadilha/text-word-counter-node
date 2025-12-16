@@ -5,16 +5,24 @@ const caminhoArquivo = process.argv; // Recebe argumentos pela execução do có
 const link = caminhoArquivo[2];
 
 fs.readFile(link, 'utf-8', (erro, texto) => {
-    quebraEmParagrafos(texto);
+    if (erro) {
+        console.log('qual é o erro?', erro);
+        return;
+    }
+    contaPalavras(texto);
 });
 
-function quebraEmParagrafos(texto) {
-    const paragrafos = texto.toLowerCase().split('\n');
+function contaPalavras(texto) {
+    const paragrafos = extraiParagrafos(texto);
     const contagem = paragrafos.flatMap((paragrafo) => {
-        if (!paragrafo) return [];
-        return verificaPalavrasDuplicadas(paragrafo);
-    })
-    console.log(contagem);
+            if (!paragrafo) return [];
+            return verificaPalavrasDuplicadas(paragrafo);
+        })
+        console.log(contagem);
+}
+
+function extraiParagrafos(texto) {
+    return texto.toLowerCase().split('\n');
 }
 
 function limpaPalavras(palavra) {
