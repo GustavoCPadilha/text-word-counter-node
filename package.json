@@ -17,5 +17,9 @@
     "url": "https://github.com/GustavoCPadilha/text-word-counter-node/issues"
   },
   "homepage": "https://github.com/GustavoCPadilha/text-word-counter-node#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2"
+  }
 }
